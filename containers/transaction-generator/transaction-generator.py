@@ -31,4 +31,4 @@ while True:
 	headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 	response = requests.post("http://compute-interest-api:8080/computeinterest", data=json.dumps(transaction), headers=headers)
 	print response.text
-	time.sleep(0.01)
+	time.sleep(1)
