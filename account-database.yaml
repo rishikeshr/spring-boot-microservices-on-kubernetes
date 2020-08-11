@@ -14,13 +14,17 @@ spec:
     app: office-space
     tier: database
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: account-database
   labels:
     app: office-space
 spec:
+  selector:
+    matchLabels:
+      app: office-space
+      tier: database
   strategy:
     type: Recreate
   template:
@@ -41,7 +45,6 @@ spec:
               value: password
             - name: MYSQL_DATABASE
               value: dockercon2017
-
           ports:
             - containerPort: 3306
               name: db

@@ -14,13 +14,17 @@ spec:
     app: office-space
     tier: notification
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: send-notification
   labels:
     app: office-space
 spec:
+  selector:
+     matchLabels:
+       app: office-space
+       tier: notification  
   strategy:
     type: Recreate
   template:
@@ -30,7 +34,7 @@ spec:
         tier: notification
     spec:
       containers:
-        - image: anthonyamanse/send-notification:v1
+        - image: rishikeshr/send-notification
           imagePullPolicy: Always
           name: send-notification
           env:
